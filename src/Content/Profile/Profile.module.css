@@ -1,0 +1,10 @@
+.mainBanner{
+    margin-right: 10px;
+}
+
+.mainBanner img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: 0 50%;
+}

@@ -1,0 +1,11 @@
+.userProfileWrapper {
+    display: flex;
+    border: 1px solid teal;
+    padding: 20px;
+    margin: 15px 15px 15px 0;
+    border-radius: 16px;
+}
+
+.basicInfo {
+    margin: 15px;
+}

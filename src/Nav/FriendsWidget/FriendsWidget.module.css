@@ -1,0 +1,14 @@
+.randomFriends {
+    display: flex;
+    margin: 15px;
+    justify-content: center;
+    color: gold;
+}
+
+.friendItem {
+    margin: 15px;
+}
+
+.friendItem img { 
+    border-radius: 50%;
+}
