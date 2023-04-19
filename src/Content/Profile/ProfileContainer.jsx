@@ -2,7 +2,7 @@ import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { getUserProfile, getStatus, updateStatus} from "../../Redux/profile-reducer";
+import {getUserProfile, getStatus, updateStatus, savePhoto} from "../../Redux/profile-reducer";
 import { useParams } from "react-router-dom";
 import { AuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
@@ -14,7 +14,12 @@ class ProfileContainer extends React.Component {
         this.props.getUserProfile(this.props.userId);
         this.props.getStatus(this.props.userId);
     };
-   
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.props.userId !== prevProps.userId){
+            this.props.getUserProfile(this.props.userId);
+        }
+    }
+
     render() {
         return (
             <Profile {...this.props} />
@@ -30,7 +35,10 @@ let getRounterURLComonentContainer = ( props ) => {
     }
     if (!userId) return <Navigate to={"/login"}/>
     return (
-        <ProfileContainer {...props} userId = { userId }/>
+        <ProfileContainer {...props}
+                          userId = { userId }
+                          isOwner={ userId === props.myId }
+        />
     );
        
 };
@@ -44,5 +52,6 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
+    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto}),
+
 )(getRounterURLComonentContainer)

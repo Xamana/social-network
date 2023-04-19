@@ -9,3 +9,19 @@
 .basicInfo {
     margin: 15px;
 }
+
+.userImg {
+    border-radius: 50%;
+}
+
+.imgWrapper {
+    margin: 15px;
+    margin-right: 30px;
+    position: relative;
+}
+
+.setUserImg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}

@@ -6,7 +6,6 @@ const ProfileStatusWithHooc = (props) => {
       let [status, setStatus] = useState(props.status);
 
       let enabledEditMode = () => {
-          console.log('do');
           setEditMode(true)
       }
 
