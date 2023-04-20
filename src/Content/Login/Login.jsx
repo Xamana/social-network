@@ -14,9 +14,9 @@ const Login = (props) => {
 
       return (
             <div>
-                  <Form 
-                        onSubmit={(values) => props.login(values.email, values.password, values.rememberMe, values.captcha)}
-                        render={({ handleSubmit, form, submitting, pristine, values, submitError }) => (
+                  <Form
+                      onSubmit={(values) => props.login(values.email, values.password, values.rememberMe, values.captcha)}
+                      render={({ handleSubmit, form, submitting, pristine, values, submitError }) =>
                                     <form onSubmit={handleSubmit}>
                                           <div className="">
                                                 <TextInput name={'email'} placeholder={'Email'} validate={combineValidators(require, maxLength(30))}/>
@@ -45,7 +45,7 @@ const Login = (props) => {
                                           </div>
                                                                                                              
                                     </form>
-                         )}
+                         }
                   />
             </div>
       );

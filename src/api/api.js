@@ -1,4 +1,5 @@
 import axios from "axios";
+import {setNewUserData} from "../Redux/profile-reducer";
 
 const baseUrl = "https://social-network.samuraijs.com/api/1.0/";
 
@@ -84,6 +85,11 @@ export const profileAPI = {
                         'Content-Type': 'multipart/form-data'
                     }
                  })
+                .then(response => response.data)
+        )
+    },
+    setNewUserData(data) {
+        return (instance.put(`profile`, data)
                 .then(response => response.data)
         )
     }

@@ -1,11 +1,13 @@
-import { profileAPI } from '../api/api'; 
+import { profileAPI } from '../api/api';
+import { FORM_ERROR } from 'final-form';
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const UPDATE_STATUS = 'UPDATE_STATUS';
-const SAVE_PHOTO = 'SAVE_PHOTO'
+const SAVE_PHOTO = 'SAVE_PHOTO';
+const UPDATE_USER_PROFILE = 'UPDATE_USER_PROFILE'
 
 
 const initialState = {
@@ -43,8 +45,9 @@ export const profileReducer = (state = initialState, action) => {
         case UPDATE_STATUS:
             return {...state, status: action.status}
         case SAVE_PHOTO:
-            debugger
             return {...state, userProfile: {...state.userProfile, photos: action.photos}}
+        case UPDATE_USER_PROFILE:
+            return {...state, userProfile: {...state.userProfile, ...action.data}}
         default:
             return state;
     }
@@ -75,6 +78,14 @@ export const setPhotoSuccess = (photos) => {
     })
 };
 
+export const updateUserProfileSuccess = (data) => {
+    return({
+        type: UPDATE_USER_PROFILE,
+        data
+    })
+
+}
+
 export const updateUserStatus = (status) => {
     return({type: UPDATE_STATUS, status})
 };
@@ -101,6 +112,16 @@ export const savePhoto = (photo) => async (dispatch) => {
     const response = await profileAPI.setPhoto(photo);
     if(response.resultCode === 0){
         dispatch(setPhotoSuccess(response.data.photos))
+    }
+}
+
+export const setNewUserData = (data) => async (dispatch, getState) => {
+    const response = await profileAPI.setNewUserData(data);
+    if(response.resultCode === 0){
+        dispatch(getUserProfile(getState().auth.userId))
+    } else {
+        console.log(FORM_ERROR)
+        return {[FORM_ERROR]: response.messages}
     }
 }
 
