@@ -14,10 +14,8 @@ const ChageUserProfileMode = ({setNewUserData, setOnChangeMode, profile}) => {
   return (
       <Form
           initialValues={profile || {}}
-          onSubmit={(values) => {
-              setNewUserData(values)
-              // setOnChangeMode(false)
-          }
+          onSubmit={(values) => setNewUserData(values)
+
       }
       render={({handleSubmit, form, submitting, pristine, values, submitError}) => (
           <form onSubmit={handleSubmit}>

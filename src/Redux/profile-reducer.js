@@ -120,8 +120,8 @@ export const setNewUserData = (data) => async (dispatch, getState) => {
     if(response.resultCode === 0){
         dispatch(getUserProfile(getState().auth.userId))
     } else {
-        console.log(FORM_ERROR)
-        return {[FORM_ERROR]: response.messages}
+        console.log(response.messages[0])
+        return {[FORM_ERROR]: response.messages[0]}
     }
 }
 
